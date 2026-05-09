@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer utilities {
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .animate-cursor-blink {
+    animation: cursor-blink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@theme {
+  --color-primary: #F44D4C;
+  --color-primary-50: #FFF1F0;
+  --color-primary-100: #FDE2E1;
+  --color-primary-200: #FBC7C6;
+  --color-primary-300: #F7A3A2;
+  --color-primary-400: #F67C7B;
+  --color-primary-500: #F44D4C;
+  --color-primary-600: #D93C3B;
+  --color-primary-700: #C03231;
+  --color-primary-800: #A22828;
+  --color-primary-900: #862222;
+  
+  --color-secondary: #FFE882;
+  --color-secondary-foreground: #0F172A;
+  
+  --color-border: #e2e8f0;
+}
