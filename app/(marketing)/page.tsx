@@ -72,7 +72,7 @@ export default function LandingPage() {
             playsInline 
             className="w-full h-full object-cover scale-110"
           >
-            <source src="/public/hero-video.mp4" type="video/mp4" />
+            <source src="public/hero-video.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/40 to-[#fafafa]"></div>
         </motion.div>
