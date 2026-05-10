@@ -106,8 +106,10 @@ export function ResultSection({
     ? calculateSurcharges(shippingRule, packages, selectedIncoterm, isRemoteArea)
     : { ddpSurcharge: 0, handlingSurcharge: 0, remoteAreaSurcharge: isRemoteArea ? REMOTE_AREA_SURCHARGE : 0 };
 
-  const saverBase = shippingRates.saver;
-  const expressBase = shippingRates.express;
+  const priceMultiplier = customerType === 'B2C' ? 1.2 : 1.0;
+
+  const saverBase = shippingRates.saver * priceMultiplier;
+  const expressBase = shippingRates.express * priceMultiplier;
 
   const saverTotal = saverBase + remoteAreaSurcharge + handlingSurcharge + ddpSurcharge + insuranceFee;
   const expressTotal = expressBase + remoteAreaSurcharge + handlingSurcharge + ddpSurcharge + insuranceFee;
