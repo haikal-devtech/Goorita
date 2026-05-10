@@ -119,13 +119,16 @@ export function PricingSection() {
   const [search, setSearch] = useState('');
   const [regionFilter, setRegionFilter] = useState('All');
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [customerType, setCustomerType] = useState<'B2C' | 'B2B'>('B2C');
+
+  const priceMultiplier = customerType === 'B2C' ? 1.2 : 1.0;
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
       minimumFractionDigits: 0
-    }).format(price).replace('Rp', 'Rp ');
+    }).format(price * priceMultiplier).replace('Rp', 'Rp ');
   };
 
   const regions = ['All', 'Asia', 'Europe', 'America', 'Australia'];
@@ -172,6 +175,31 @@ export function PricingSection() {
         </div>
 
         {/* Filters */}
+        <div className="flex justify-center mb-8">
+          <div className="flex bg-slate-200/50 p-1 rounded-2xl w-full md:w-auto">
+            <button
+              onClick={() => setCustomerType('B2C')}
+              className={`flex-1 md:flex-none whitespace-nowrap px-8 py-3 rounded-xl text-sm font-black tracking-widest transition-all ${
+                customerType === 'B2C'
+                  ? 'bg-white text-slate-900 shadow-[0_4px_10px_rgba(0,0,0,0.05)]'
+                  : 'text-slate-500 hover:text-slate-700 hover:bg-white/50'
+              }`}
+            >
+              Personal (B2C)
+            </button>
+            <button
+              onClick={() => setCustomerType('B2B')}
+              className={`flex-1 md:flex-none whitespace-nowrap px-8 py-3 rounded-xl text-sm font-black tracking-widest transition-all ${
+                customerType === 'B2B'
+                  ? 'bg-white text-slate-900 shadow-[0_4px_10px_rgba(0,0,0,0.05)]'
+                  : 'text-slate-500 hover:text-slate-700 hover:bg-white/50'
+              }`}
+            >
+              Business (B2B)
+            </button>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
           {/* Search */}
           <div className="relative w-full md:max-w-xs">
